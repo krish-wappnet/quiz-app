@@ -7,11 +7,11 @@ import { CommonModule } from '@angular/common';
   selector: 'app-quiz-result',
   imports: [CommonModule, RouterModule],
   templateUrl: './quiz-result.component.html',
-  styleUrls: ['./quiz-result.component.scss'] // Add SCSS file reference
+  styleUrls: ['./quiz-result.component.scss']
 })
 export class QuizResultComponent implements OnInit {
   quiz: Quiz;
-  userAnswers: number[][] = [];
+  userAnswers: (number | null)[] = []; // Updated type to match QuizPlayerComponent
   score = 0;
 
   constructor(private router: Router) {
@@ -27,9 +27,9 @@ export class QuizResultComponent implements OnInit {
 
   calculateScore() {
     this.quiz.questions.forEach((q, i) => {
-      const userAns = this.userAnswers[i].sort();
-      const correctAns = q.correctAnswers.sort();
-      if (JSON.stringify(userAns) === JSON.stringify(correctAns)) {
+      const userAns = this.userAnswers[i]; // Single number or null
+      const correctAns = q.correctAnswers[0]; // Assuming first correct answer is the only one for single choice
+      if (userAns !== null && userAns === correctAns) {
         this.score++;
       }
     });
@@ -37,18 +37,17 @@ export class QuizResultComponent implements OnInit {
 
   getUserAnswersText(question: Question, index: number): string {
     const userAns = this.userAnswers[index];
-    return userAns.length ? userAns.map(idx => question.options[idx]).join(', ') : 'None';
+    return userAns !== null ? question.options[userAns] : 'None';
   }
 
   getCorrectAnswersText(question: Question): string {
-    return question.correctAnswers.map(idx => question.options[idx]).join(', ');
+    return question.options[question.correctAnswers[0]]; // Single correct answer
   }
 
-  // Helper method to check if the answer was correct
   isCorrect(index: number): boolean {
-    const userAns = this.userAnswers[index].sort();
-    const correctAns = this.quiz.questions[index].correctAnswers.sort();
-    return JSON.stringify(userAns) === JSON.stringify(correctAns);
+    const userAns = this.userAnswers[index];
+    const correctAns = this.quiz.questions[index].correctAnswers[0];
+    return userAns !== null && userAns === correctAns;
   }
 
   restart() {

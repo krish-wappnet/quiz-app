@@ -10,8 +10,11 @@
       <p class="question-text">Q{{ currentIndex + 1 }}: {{ currentQuestion.text }}</p>
       <div class="options-list">
         <div class="option-item" *ngFor="let option of currentQuestion.options; let i = index">
-          <label class="checkbox-label">
-            <input type="checkbox" [checked]="userAnswers[currentIndex].includes(i)" (change)="toggleUserAnswer(i)">
+          <label class="radio-label">
+            <input type="radio" 
+                   [checked]="userAnswers[currentIndex] === i"
+                   (change)="selectAnswer(i)"
+                   name="question-{{currentIndex}}">
             <span>{{ option }}</span>
           </label>
         </div>

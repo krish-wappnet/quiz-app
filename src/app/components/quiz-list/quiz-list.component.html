@@ -1,3 +1,4 @@
+<!-- quiz-list.component.html -->
 <h2>Saved Quizzes</h2>
 <div class="quiz-container" *ngFor="let quiz of quizzes">
   <div class="quiz-header">
@@ -6,7 +7,7 @@
   </div>
   <div class="quiz-details">
     <button class="play-btn" [routerLink]="['/quiz', quiz.id]">Play</button>
-    <button class="delete-btn" (click)="deleteQuiz(quiz.id)">Delete</button>
+    <button class="delete-btn" (click)="initiateDelete(quiz.id)">Delete</button>
     <button class="toggle-btn" (click)="quiz.showQuestions = !quiz.showQuestions">
       {{ quiz.showQuestions ? 'Hide Questions' : 'Show Questions' }}
     </button>
@@ -20,3 +21,9 @@
   </div>
 </div>
 <button class="create-btn" [routerLink]="['/create']">Create New Quiz</button>
+
+<app-delete-confirmation-modal
+  [isOpen]="showDeleteModal"
+  [quizTitle]="quizTitleToDelete"
+  (confirmed)="handleDeleteConfirmation($event)">
+</app-delete-confirmation-modal>

@@ -7,12 +7,14 @@
     <div class="questions-list">
       <div class="question-card" *ngFor="let question of quiz.questions; let i = index" [ngClass]="{'correct': isCorrect(i), 'incorrect': !isCorrect(i)}">
         <p class="question-text">Q{{ i + 1 }}: {{ question.text }}</p>
-        <p class="user-answers">Your Answers: {{ getUserAnswersText(question, i) }}</p>
-        <p class="correct-answers">Correct Answers: {{ getCorrectAnswersText(question) }}</p>
+        <p class="user-answers" [ngClass]="{'incorrect-answer': !isCorrect(i)}">
+          Your Answer: {{ getUserAnswersText(question, i) }}
+        </p>
+        <p class="correct-answers">Correct Answer: {{ getCorrectAnswersText(question) }}</p>
       </div>
     </div>
     <div class="action-buttons">
       <button class="back-btn" [routerLink]="['/quizzes']">Back to Quizzes</button>
       <button class="restart-btn" (click)="restart()">Restart Quiz</button>
     </div>
-  </div>
+</div>

@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class QuizPlayerComponent implements OnInit {
   quiz: Quiz | undefined;
   currentIndex = 0;
-  userAnswers: number[][] = [];
+  userAnswers: (number | null)[] = []; // Changed to store single number or null per question
 
   constructor(
     private quizService: QuizService,
@@ -29,22 +29,16 @@ export class QuizPlayerComponent implements OnInit {
       this.router.navigate(['/quizzes']);
       return;
     }
-    this.userAnswers = this.quiz.questions.map(() => []);
-    console.log('Quiz loaded:', this.quiz); // Debug log to verify quiz data
+    this.userAnswers = this.quiz.questions.map(() => null); // Initialize with null for each question
+    console.log('Quiz loaded:', this.quiz);
   }
 
   get currentQuestion(): Question | undefined {
     return this.quiz?.questions[this.currentIndex];
   }
 
-  toggleUserAnswer(optionIndex: number) {
-    const answers = this.userAnswers[this.currentIndex];
-    const idx = answers.indexOf(optionIndex);
-    if (idx > -1) {
-      answers.splice(idx, 1);
-    } else {
-      answers.push(optionIndex);
-    }
+  selectAnswer(optionIndex: number) {
+    this.userAnswers[this.currentIndex] = optionIndex; // Set single selection
   }
 
   nextQuestion() {
@@ -63,7 +57,6 @@ export class QuizPlayerComponent implements OnInit {
     }
   }
 
-  // Explicit progress calculation
   getProgressPercentage(): number {
     if (!this.quiz || this.quiz.questions.length === 0) return 0;
     return ((this.currentIndex + 1) / this.quiz.questions.length) * 100;
