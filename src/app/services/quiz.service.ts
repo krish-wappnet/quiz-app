@@ -13,12 +13,17 @@ export class QuizService {
 
   saveQuiz(quiz: Quiz): void {
     const quizzes = this.getQuizzes();
-    quiz.id = Date.now().toString(); // Simple unique ID
+    quiz.id = Date.now().toString();
     quizzes.push(quiz);
     localStorage.setItem(this.quizzesKey, JSON.stringify(quizzes));
   }
 
   getQuizById(id: string): Quiz | undefined {
     return this.getQuizzes().find(q => q.id === id);
+  }
+
+  deleteQuiz(quizId: string): void {
+    const quizzes = this.getQuizzes().filter(quiz => quiz.id !== quizId);
+    localStorage.setItem(this.quizzesKey, JSON.stringify(quizzes));
   }
 }

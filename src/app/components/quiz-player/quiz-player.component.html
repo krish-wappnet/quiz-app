@@ -1,1 +1,12 @@
-<p>quiz-player works!</p>
+<div *ngIf="quiz">
+    <h2>{{ quiz.title }}</h2>
+    <div *ngIf="currentQuestion">
+      <p>{{ currentQuestion.text }}</p>
+      <div *ngFor="let option of currentQuestion.options; let i = index">
+        <input type="checkbox" [checked]="userAnswers[currentIndex].includes(i)" (change)="toggleUserAnswer(i)">
+        {{ option }}
+      </div>
+      <button (click)="nextQuestion()" *ngIf="currentIndex < quiz.questions.length - 1">Next</button>
+      <button (click)="finishQuiz()" *ngIf="currentIndex === quiz.questions.length - 1">Finish</button>
+    </div>
+  </div>

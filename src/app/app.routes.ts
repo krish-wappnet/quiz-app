@@ -5,7 +5,7 @@ import { QuizListComponent } from './components/quiz-list/quiz-list.component';
 import { QuizPlayerComponent } from './components/quiz-player/quiz-player.component';
 import { QuizResultComponent } from './components/quiz-result/quiz-result.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: 'create', component: QuizFormComponent },
   { path: 'quizzes', component: QuizListComponent },
   { path: 'quiz/:id', component: QuizPlayerComponent },

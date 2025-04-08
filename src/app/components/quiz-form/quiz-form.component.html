@@ -1,1 +1,13 @@
-<p>quiz-form works!</p>
+<form (ngSubmit)="saveQuiz()">
+    <input [(ngModel)]="quiz.title" name="title" placeholder="Quiz Title" required>
+    <div *ngFor="let question of quiz.questions; let i = index">
+      <input [(ngModel)]="question.text" [name]="'q' + i" placeholder="Question" required>
+      <div *ngFor="let option of question.options; let j = index; trackBy: trackByOption">
+        <input #optionInput [(ngModel)]="question.options[j]" [name]="'o' + i + j" placeholder="Option {{ j + 1 }}" required (input)="onInput($event, i, j)">
+        <input type="checkbox" [checked]="question.correctAnswers.includes(j)" (change)="toggleCorrectAnswer(i, j)">
+      </div>
+      <button type="button" (click)="removeQuestion(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addQuestion()">Add Question</button>
+    <button type="submit">Save Quiz</button>
+  </form>

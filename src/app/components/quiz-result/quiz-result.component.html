@@ -1,1 +1,8 @@
-<p>quiz-result works!</p>
+<h2>Score: {{ score }} / {{ quiz.questions.length }}</h2>
+<div *ngFor="let question of quiz.questions; let i = index">
+  <p>{{ question.text }}</p>
+  <p>Your Answers: {{ getUserAnswersText(question, i) }}</p>
+  <p>Correct Answers: {{ getCorrectAnswersText(question) }}</p>
+</div>
+<button [routerLink]="['/quizzes']">Back to Quizzes</button>
+<button (click)="restart()">Restart</button>
