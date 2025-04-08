@@ -26,4 +26,13 @@ export class QuizService {
     const quizzes = this.getQuizzes().filter(quiz => quiz.id !== quizId);
     localStorage.setItem(this.quizzesKey, JSON.stringify(quizzes));
   }
+
+  updateQuiz(quiz: Quiz): void {
+    const quizzes = this.getQuizzes();
+    const index = quizzes.findIndex(q => q.id === quiz.id);
+    if (index !== -1) {
+      quizzes[index] = { ...quiz }; // Replace the existing quiz
+      localStorage.setItem(this.quizzesKey, JSON.stringify(quizzes));
+    }
+  }
 }

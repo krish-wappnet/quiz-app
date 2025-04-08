@@ -237,3 +237,100 @@
       }
     }
   }
+
+  /* Add this to the end of your existing quiz-form.component.scss */
+  .validation-errors {
+    position: relative;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #fff;
+    border: 2px solid #333; // Black border for consistency
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+    max-width: 600px; // Constrain width for better readability
+    margin-left: auto;
+    margin-right: auto;
+  
+    .error-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #333;
+      font-size: 1.1rem;
+  
+      .error-icon {
+        font-size: 1.2rem;
+        color: #ff0000; // Red icon for attention
+      }
+    }
+  
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      li.error-message {
+        color: #333; // Black text for readability
+        font-size: 0.95rem;
+        padding: 8px 0;
+        position: relative;
+        padding-left: 20px;
+  
+        &::before {
+          content: '•'; // Bullet point for each error
+          color: #ff0000; // Red bullet
+          position: absolute;
+          left: 5px;
+          font-size: 1.2rem;
+        }
+      }
+    }
+  }
+
+  /* Add these styles to your existing quiz-form.component.scss */
+.has-error {
+  border-color: #ff0000; // Red border for invalid sections
+  background-color: #fff5f5; // Very light red background
+}
+
+.error-messages {
+  margin-top: 8px;
+  padding: 8px;
+  background-color: #fff;
+  border: 1px solid #ff0000;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+  .error-text {
+    display: block;
+    color: #ff0000;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    font-weight: 500;
+
+    &:before {
+      content: '⚠️ ';
+      margin-right: 5px;
+    }
+  }
+}
+
+/* Adjust existing styles if needed */
+.question-card {
+  /* Ensure border is visible for has-error */
+  border: 2px solid #ddd;
+  position: relative; // For error positioning
+}
+
+.title-section {
+  /* Ensure border is visible for has-error */
+  border: 2px solid transparent; // Default transparent to avoid layout shift
+  padding: 5px; // Add padding for better spacing with error
+}
+
+/* Optional: Adjust questions-list to accommodate error messages */
+.questions-list {
+  position: relative;
+}

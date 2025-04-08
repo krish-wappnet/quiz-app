@@ -9,6 +9,7 @@ import { LeaderboardComponent } from './components/leaderboard/leaderboard.compo
 export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'create', component: QuizFormComponent },
+  { path: 'create/:id', component: QuizFormComponent }, // Added edit route
   { path: 'quizzes', component: QuizListComponent },
   { path: 'quiz/:id', component: QuizPlayerComponent },
   { path: 'result', component: QuizResultComponent },

@@ -1,142 +1,168 @@
-// Base styles with white background theme
 .quiz-container {
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
-  
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-    }
+  max-width: 900px;
+  margin: 0 auto 15px;
+  padding: 15px;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0; // Minimal border
+  transition: background-color 0.3s ease; // Smooth background transition
+
+  &:hover {
+    background-color: #f8f8f8; // Light gray on hover for subtle feedback
   }
-  
+
   .quiz-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-  
+
     h3 {
       margin: 0;
       font-size: 1.25rem;
       color: #333;
       font-weight: 500;
+      transition: color 0.3s ease; // Smooth color transition
+
+      .quiz-container:hover & { // Target h3 when container is hovered
+        color: #555; // Slightly lighter on hover
+      }
     }
-  
+
     .question-count {
       font-size: 0.9rem;
       color: #666;
-      background: #f0f0f0;
-      padding: 2px 8px;
-      border-radius: 12px;
+      transition: color 0.3s ease;
+
+      .quiz-container:hover & {
+        color: #888; // Lighter gray on hover
+      }
     }
   }
-  
+
   .quiz-details {
     display: flex;
-    gap: 12px;
-  }
-  
-  // Button styles
-  button {
-    padding: 8px 15px;
-    border: 1px solid #333;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  
-  .play-btn {
-    background-color: #333;
-    color: #fff;
-  
-    &:hover {
-      background-color: #555;
-      border-color: #555;
-    }
-  }
-  
-  .delete-btn {
-    background-color: transparent;
-    color: #333;
-  
-    &:hover {
-      background-color: #333;
-      color: #fff;
-    }
-  }
-  
-  .toggle-btn {
-    background-color: transparent;
-    color: #333;
-  
-    &:hover {
-      background-color: #333;
-      color: #fff;
-    }
-  }
-  
-  .create-btn {
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-    background-color: #333;
-    color: #fff;
-    font-size: 1rem;
-    padding: 10px 15px;
-  
-    &:hover {
-      background-color: #fff;
+    gap: 10px;
+
+    button {
+      padding: 6px 12px;
+      border: 1px solid #333;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      background-color: transparent;
       color: #333;
-      border-color: #333;
+      font-weight: 500;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; // Smooth transitions
+
+      &:hover {
+        background-color: #333;
+        color: #fff;
+        border-color: #333;
+      }
+    }
+
+    .play-btn {
+      background-color: #333;
+      color: #fff;
+
+      &:hover {
+        background-color: #555; // Slightly lighter gray on hover
+        border-color: #555;
+      }
     }
   }
-  
-  // Questions preview
+
   .questions-preview {
-    margin-top: 12px;
-    padding: 12px;
-    background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-  
+    margin-top: 10px;
+    padding: 10px 0;
+
     ul {
       list-style: none;
       padding: 0;
       margin: 0;
-  
+
       li {
-        padding: 8px 0;
-        border-bottom: 1px solid #e0e0e0;
+        padding: 5px 0;
         color: #333;
-  
-        &:last-child {
-          border-bottom: none;
+        font-size: 0.95rem;
+        transition: color 0.3s ease;
+
+        .quiz-container:hover & {
+          color: #555; // Lighter on container hover
         }
-  
+
         strong {
           color: #555;
-          margin-right: 8px;
+          margin-right: 5px;
+          transition: color 0.3s ease;
+
+          .quiz-container:hover & {
+            color: #777; // Even lighter for emphasis
+          }
         }
       }
     }
   }
-  
-  // General page styling
-  h2 {
-    text-align: center;
+}
+
+.create-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 8px 15px;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    background-color: #fff;
     color: #333;
-    margin-bottom: 25px;
-    font-size: 2rem;
-    font-weight: 600;
-    letter-spacing: 1px;
+    border-color: #333;
   }
+}
+
+h2 {
+  text-align: center;
+  color: #222;
+  margin: 30px 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  position: relative;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #444; // Subtle darken on hover
+  }
+
+  &::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background: #333;
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: width 0.3s ease, background 0.3s ease;
+
+    .h2:hover & { // Target pseudo-element when h2 is hovered
+      width: 60px; // Slightly wider on hover
+      background: #555; // Lighter gray
+    }
+  }
+}
+.edit-btn { // New Edit Button Styling
+  background-color: transparent;
+  color: #333;
+
+  &:hover {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+  }
+}
