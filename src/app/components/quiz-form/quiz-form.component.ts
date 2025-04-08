@@ -8,7 +8,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-quiz-form',
   imports: [CommonModule, FormsModule],
-  templateUrl: './quiz-form.component.html'
+  templateUrl: './quiz-form.component.html',
+  styleUrls: ['./quiz-form.component.scss'] // Add SCSS file reference
 })
 export class QuizFormComponent {
   quiz: Quiz = { id: '', title: '', questions: [] };
@@ -45,11 +46,10 @@ export class QuizFormComponent {
     return index;
   }
 
-  // Retain focus after input
   onInput(event: Event, questionIndex: number, optionIndex: number) {
     const input = this.optionInputs.toArray()[questionIndex * 4 + optionIndex]?.nativeElement;
     if (input) {
-      input.focus(); // Keep focus on the current input
+      input.focus();
     }
   }
 }

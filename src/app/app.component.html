@@ -1,3 +1,16 @@
-
-
-<router-outlet />
+<nav class="navbar">
+  <div class="navbar-brand">
+    <a routerLink="/" class="brand-link">Quiz App</a>
+  </div>
+  <ul class="navbar-menu">
+    <li class="navbar-item">
+      <a routerLink="/create" routerLinkActive="active" class="nav-link">Create Quiz</a>
+    </li>
+    <li class="navbar-item">
+      <a routerLink="/quizzes" routerLinkActive="active" class="nav-link">Quiz List</a>
+    </li>
+  </ul>
+</nav>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

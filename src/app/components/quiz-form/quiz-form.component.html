@@ -1,13 +1,33 @@
-<form (ngSubmit)="saveQuiz()">
-    <input [(ngModel)]="quiz.title" name="title" placeholder="Quiz Title" required>
-    <div *ngFor="let question of quiz.questions; let i = index">
-      <input [(ngModel)]="question.text" [name]="'q' + i" placeholder="Question" required>
-      <div *ngFor="let option of question.options; let j = index; trackBy: trackByOption">
-        <input #optionInput [(ngModel)]="question.options[j]" [name]="'o' + i + j" placeholder="Option {{ j + 1 }}" required (input)="onInput($event, i, j)">
-        <input type="checkbox" [checked]="question.correctAnswers.includes(j)" (change)="toggleCorrectAnswer(i, j)">
+<div class="form-container">
+    <h2>Create a New Quiz</h2>
+    <form (ngSubmit)="saveQuiz()" class="quiz-form">
+      <div class="title-section">
+        <label for="title">Quiz Title</label>
+        <input id="title" [(ngModel)]="quiz.title" name="title" placeholder="Enter quiz title" required>
       </div>
-      <button type="button" (click)="removeQuestion(i)">Remove</button>
-    </div>
-    <button type="button" (click)="addQuestion()">Add Question</button>
-    <button type="submit">Save Quiz</button>
-  </form>
+  
+      <div class="questions-list">
+        <div class="question-card" *ngFor="let question of quiz.questions; let i = index">
+          <div class="question-header">
+            <label>Question {{ i + 1 }}</label>
+            <input [(ngModel)]="question.text" [name]="'q' + i" placeholder="Enter your question" required>
+          </div>
+          <div class="options-list">
+            <div class="option-item" *ngFor="let option of question.options; let j = index; trackBy: trackByOption">
+              <input #optionInput [(ngModel)]="question.options[j]" [name]="'o' + i + j" placeholder="Option {{ j + 1 }}" required (input)="onInput($event, i, j)">
+              <label class="checkbox-label">
+                <input type="checkbox" [checked]="question.correctAnswers.includes(j)" (change)="toggleCorrectAnswer(i, j)">
+                Correct
+              </label>
+            </div>
+          </div>
+          <button type="button" class="remove-btn" (click)="removeQuestion(i)">Remove Question</button>
+        </div>
+      </div>
+  
+      <div class="action-buttons">
+        <button type="button" class="add-btn" (click)="addQuestion()">Add Question</button>
+        <button type="submit" class="save-btn" [disabled]="!quiz.title || quiz.questions.length === 0">Save Quiz</button>
+      </div>
+    </form>
+  </div>

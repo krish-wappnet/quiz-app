@@ -1,0 +1,80 @@
+.navbar {
+    background-color: #fff; // White background
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  
+    .navbar-brand {
+      .brand-link {
+        color: #333; // Dark gray for contrast
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+  
+        &:hover {
+          color: #4caf50; // Green on hover
+        }
+      }
+    }
+  
+    .navbar-menu {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      gap: 20px;
+  
+      .navbar-item {
+        .nav-link {
+          color: #555; // Slightly lighter gray for links
+          font-size: 1.1rem;
+          text-decoration: none;
+          padding: 8px 15px;
+          border-radius: 5px;
+          transition: background-color 0.3s ease, color 0.3s ease;
+  
+          &:hover {
+            background-color: #f0f0f0; // Light gray on hover
+            color: #4caf50; // Green text on hover
+          }
+  
+          &.active {
+            background-color: #4caf50; // Green for active link
+            color: #fff; // White text for active link
+          }
+        }
+      }
+    }
+  }
+  
+  .content {
+    padding: 20px;
+    background-color: #fafafa; // Very light gray for content area
+    min-height: calc(100vh - 70px); // Adjust based on navbar height
+  }
+  
+  // Responsive design
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      padding: 10px;
+  
+      .navbar-menu {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-top: 10px;
+  
+        .navbar-item {
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
